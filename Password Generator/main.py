@@ -1,12 +1,11 @@
 from random import randint
 import random
-import string
 
 #i went ahead and did this because i was bored
 historyList = []
 
 retry = "y"
-while retry == "y" or retry == "yes":
+while "y" in retry.lower():
     capLetters = int(input('# of capital letters: '))
     lowerLetters = int(input('# of lowercase letters: '))
     numbers = int(input('# of numbers: '))
@@ -53,10 +52,9 @@ while retry == "y" or retry == "yes":
 
 #after the while loop is broken
 #prints the historyList vertically or See ya 'round if they chose not to print the history
-historyOutput = ""
-if retry == "h" or retry == "history":
+if "h" in retry.lower():
     print("Generated password: ")
     for j in historyList:
         print(j)
-elif retry == "n" or retry == "no":
+elif "n" in retry.lower():
     print('See ya \'round!')
