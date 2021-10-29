@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">SciFiNameGenerator</string>
+    <string name="generate">Generate</string>
+    <string name="output">Output</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="city_name">City Name</string>
+    <string name="school">School</string>
+    <string name="city">City</string>
+    <string name="brother_s_name">Brother\'s Name</string>
+    <string name="sister_s_name">Sister\'s Name</string>
+</resources>

@@ -5,67 +5,6 @@ import sys
 from Generator import Generator
 from Checker import Checker
 
-#old password generator, now its in a class
-'''
-def passwordGen():
-    capLetters = 1
-    lowerLetters = 5
-    numbers = 1
-    symbols = 1
-    passwordRaw = ""
-    symbolsAdd = 0
-    for i in range(capLetters):
-        passwordRaw += chr(randint(65,90))
-    for i in range(lowerLetters):
-        passwordRaw += chr(randint(97,122))
-    for i in range(numbers):
-        passwordRaw += chr(randint(48,57))
-    while symbols != 0:
-        symbolsAdd = randint(33,64)
-        if symbolsAdd == 33 \
-        or symbolsAdd == 35 \
-        or symbolsAdd == 36 \
-        or symbolsAdd == 37 \
-        or symbolsAdd == 38 \
-        or symbolsAdd == 40 \
-        or symbolsAdd == 41 \
-        or symbolsAdd == 42 \
-        or symbolsAdd == 64:
-            passwordRaw += chr(symbolsAdd)
-            symbols -= 1
-    password = ''.join(random.sample(passwordRaw, len(passwordRaw)))
-    return password
-'''
-#old code for the password strength checker, now its in a class
-'''
-def passStr(password):
-    checkList=[False,False,False,False,False]
-    for i in password:
-        if ord(i) in range(97,123):
-            checkList[0] = True
-        if ord(i) in range(65,91):
-            checkList[1] = True
-        if i.isdigit() == True:
-            checkList[2] = True
-        if i == "!" \
-        or i == "@" \
-        or i == "#" \
-        or i == "$" \
-        or i == "%" \
-        or i == "^" \
-        or i == "&" \
-        or i == "(" \
-        or i == ")":
-            checkList[3] = True
-
-    if (len(password) >= 8):
-        checkList[4] = True
-    if False in checkList:
-        return False
-    else:
-        return True
-'''
-
 catDictionary={}
 
 def addCatagory():
@@ -77,10 +16,6 @@ def listFunc():
     #for every key (the catagories) in the dictionary, print (catagory):
     for i in catDictionary.keys():
         print(i,":")
-        # print(catDictionary[i])
-        # for j in catDictionary[i]:
-        #     print("\t",j)
-        # print()
 
         #this conditional was to fix the issue of printing out one vs multiple values
         #if the value is a list, it iterates through the list
@@ -173,6 +108,9 @@ def editPass():
     
     uI=input('Select the password to edit: ')
     changeIn=input('Type what you want it changed to: ')
+    while Checker(changeIn).check()==False:
+        print('New password does not meet the requirements!')
+        changeIn=input('Changed password: ')
     k = int(uI)-1
     #most of this function is copied from the remPass() function but instead of removing, it replaces
     if uI in catDictionary[uCat]:
@@ -201,10 +139,12 @@ if "y" in askNewUser.lower():
     userFName=input('First Name: ')
     userLName=input('Last Name: ')
     userUName=input('Username: ')
+    print('New password must have:\n\t1 capital letter\n\t1 number\n\t1 special symbol: !,@,#,$,%,^,&,(,)\n\tLength of 8 or more')
     masterPass=input('Master Password: ')
     while Checker(masterPass).check()==False:
         print('New password does not meet the requirements!')
         masterPass=input('Master Password: ')
+    print("Account created!")
 
 tries = 3
 while logIn==False:
